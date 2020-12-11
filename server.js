@@ -18,6 +18,11 @@ app.use(express.static('.', {
         if (path.endsWith('privacy-protections/request-blocking/index.html')) {
             res.set('Content-Security-Policy-Report-Only', 'img-src http: https:; report-uri https://bad.third-party.site/block-me/csp');
         }
+
+        // send Referrer-policy header when fetching referrer trimming test site
+        if (path.endsWith('privacy-protections/referrer-trimming/index.html')) {
+            res.set('Referrer-Policy', 'unsafe-url');
+        }
     }
 }));
 
